@@ -1,0 +1,11 @@
+# Robots.txt for SciCalc Pro
+# Controls search engine crawling behavior
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /storage/
+Disallow: /vendor/
+
+# Sitemap location (update domain when purchased)
+Sitemap: https://yourdomain.com/sitemap.xml
