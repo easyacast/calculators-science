@@ -9,3 +9,8 @@ Disallow: /vendor/
 
 # Sitemap location (update domain when purchased)
 Sitemap: https://yourdomain.com/sitemap.xml
+
+# LLMs.txt for AI discovery (update domain when purchased)
+# See https://llmstxt.org for specification
+# llms.txt: https://yourdomain.com/llms.txt
+# llms-full.txt: https://yourdomain.com/llms-full.txt

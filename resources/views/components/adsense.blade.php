@@ -1,4 +1,4 @@
-{{-- Google AdSense Ad Unit Placeholder --}}
+{{-- Google AdSense Ad Unit - Only renders when configured --}}
 @php
 $slot = $slot ?? '';
 $format = $format ?? 'auto';
@@ -16,10 +16,5 @@ $adClass = $adClass ?? '';
          @if($responsive) data-full-width-responsive="true" @endif
     ></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-@else
-{{-- Placeholder shown during development --}}
-<div class="ad-container my-6 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center text-gray-400 text-xs {{ $adClass }}">
-    Ad Space (configure ADSENSE_CLIENT_ID in .env)
 </div>
 @endif

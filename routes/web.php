@@ -4,6 +4,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\LlmsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,10 @@ Route::get('/sitemap', [PageController::class, 'sitemapHtml'])->name('sitemap.ht
 // XML Sitemaps
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.xml');
 Route::get('/sitemap-{category}.xml', [SitemapController::class, 'category'])->name('sitemap.category');
+
+// LLMs.txt (AI/LLM discovery files - auto-generated)
+Route::get('/llms.txt', [LlmsController::class, 'index'])->name('llms');
+Route::get('/llms-full.txt', [LlmsController::class, 'full'])->name('llms.full');
 
 // API routes for AI Math Solver (internal, never expose keys)
 Route::post('/api/solve', [ApiController::class, 'solve']);

@@ -33,6 +33,9 @@
     {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{-- LLMs.txt Discovery --}}
+    <link rel="help" href="{{ config('site.url') }}/llms.txt" type="text/plain" title="LLMs.txt">
+
     {{-- Favicon --}}
     <link rel="icon" type="image/x-icon" href="{{ config('site.favicon') }}">
 
@@ -97,6 +100,9 @@
     <main id="main-content" class="min-h-[70vh]">
         @yield('content')
     </main>
+
+    {{-- Floating Share Buttons (visible on tool/content pages) --}}
+    @include('components.share-buttons')
 
     @include('components.footer')
 

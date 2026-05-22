@@ -9,6 +9,35 @@
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
+    "@type": "MathSolver",
+    "name": "AI Math Solver",
+    "url": "{{ config('site.url') }}/math/ai-math-solver",
+    "usageInfo": "{{ config('site.url') }}/terms-of-service",
+    "mathExpression": [
+        "2x+3=7",
+        "x^2-5x+6=0",
+        "d/dx(x^3+2x)",
+        "∫sin(x)dx"
+    ],
+    "description": "AI-powered math solver with step-by-step solutions, interactive graphing, and tutoring.",
+    "potentialAction": [{
+        "@type": "SolveMathAction",
+        "target": "{{ config('site.url') }}/math/ai-math-solver?q={math_expression_string}",
+        "mathExpression-input": "required name=math_expression_string",
+        "eduQuestionType": [
+            "Algebra",
+            "Arithmetic",
+            "Calculus",
+            "Geometry",
+            "Statistics",
+            "Trigonometry"
+        ]
+    }]
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "AI Math Solver",
     "applicationCategory": "EducationalApplication",

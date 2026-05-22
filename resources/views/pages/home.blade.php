@@ -14,6 +14,22 @@
     "url": "{{ config('site.url') }}"
 }
 </script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "MathSolver",
+    "name": "{{ config('site.name') }} - AI Math Solver",
+    "url": "{{ config('site.url') }}",
+    "usageInfo": "{{ config('site.url') }}/terms-of-service",
+    "description": "Solve any math problem with AI-powered step-by-step solutions, interactive graphs, and tutoring.",
+    "potentialAction": [{
+        "@type": "SolveMathAction",
+        "target": "{{ config('site.url') }}/math/ai-math-solver?q={math_expression_string}",
+        "mathExpression-input": "required name=math_expression_string",
+        "eduQuestionType": ["Algebra", "Arithmetic", "Calculus", "Geometry", "Statistics", "Trigonometry"]
+    }]
+}
+</script>
 @endsection
 
 @section('content')
@@ -58,6 +74,77 @@
             <div class="text-center">
                 <div class="text-2xl font-bold">AI</div>
                 <div class="text-sm text-indigo-200">Powered</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- AI Math Solver - Embedded on Homepage --}}
+<section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10 mb-8">
+    <div x-data="homeSolver()" class="bg-white rounded-2xl border border-gray-200 shadow-xl overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-white font-bold text-lg">AI Math Solver</h2>
+                    <p class="text-indigo-200 text-xs">Type any math problem and get step-by-step solutions instantly</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6">
+            <div class="flex gap-2 mb-3">
+                <textarea
+                    x-model="problem"
+                    @keydown.ctrl.enter="solve()"
+                    placeholder="Type your math problem... (e.g., Solve 2x^2 + 5x - 3 = 0)"
+                    class="flex-1 h-20 p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                ></textarea>
+            </div>
+
+            {{-- Quick examples --}}
+            <div class="flex flex-wrap gap-1.5 mb-4">
+                <template x-for="ex in examples" :key="ex">
+                    <button @click="problem = ex; solve()" class="px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-lg text-xs hover:bg-indigo-100 transition-colors" x-text="ex"></button>
+                </template>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button @click="solve()" :disabled="loading || !problem.trim()" class="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white font-medium rounded-xl hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm">
+                    <svg x-show="!loading" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <svg x-show="loading" x-cloak class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                    <span x-text="loading ? 'Solving...' : 'Solve'"></span>
+                </button>
+                <a href="{{ config('site.url') }}/math/ai-math-solver" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium">
+                    Open full solver with graphs & tutor &rarr;
+                </a>
+            </div>
+
+            {{-- Solution Display --}}
+            <div x-show="solution" x-cloak class="mt-5 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-5 border border-indigo-100">
+                <div class="text-xs font-semibold text-indigo-600 uppercase tracking-wider mb-2">Solution</div>
+                <div class="space-y-3">
+                    <template x-for="(step, i) in steps" :key="i">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5" x-text="i + 1"></div>
+                            <div>
+                                <div class="font-medium text-gray-900 text-sm" x-text="step.title"></div>
+                                <div class="text-gray-600 text-sm" x-text="step.text"></div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div x-show="answer" class="mt-4 pt-3 border-t border-indigo-200">
+                    <span class="text-sm font-bold text-gray-900">Answer: </span>
+                    <span class="text-sm text-indigo-700 font-semibold" x-text="answer"></span>
+                </div>
+            </div>
+
+            {{-- Error Display --}}
+            <div x-show="error" x-cloak class="mt-4 bg-red-50 rounded-xl p-4 border border-red-100">
+                <p class="text-sm text-red-700" x-text="error"></p>
             </div>
         </div>
     </div>
@@ -164,4 +251,57 @@
 
 @include('components.adsense', ['slot' => 'homepage-bottom'])
 
+@endsection
+
+@section('scripts')
+<script>
+function homeSolver() {
+    return {
+        problem: '',
+        loading: false,
+        solution: false,
+        steps: [],
+        answer: '',
+        error: '',
+        examples: ['2x^2 + 5x - 3 = 0', 'derivative of x^3 + 2x', 'integrate sin(x)dx', '15% of 240'],
+
+        async solve() {
+            if (!this.problem.trim()) return;
+            this.loading = true;
+            this.solution = false;
+            this.error = '';
+            this.steps = [];
+            this.answer = '';
+
+            try {
+                const res = await fetch('/api/solve', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    },
+                    body: JSON.stringify({ problem: this.problem, mode: 'step-by-step' }),
+                });
+
+                const data = await res.json();
+                if (data.steps && data.steps.length) {
+                    this.steps = data.steps;
+                    this.answer = data.answer || '';
+                    this.solution = true;
+                } else if (data.solution) {
+                    this.steps = [{ title: 'Solution', text: data.solution }];
+                    this.answer = data.answer || '';
+                    this.solution = true;
+                } else {
+                    this.error = data.error || 'Could not solve. Try the full AI Math Solver for more complex problems.';
+                }
+            } catch (e) {
+                this.error = 'Network error. Please try again.';
+            }
+
+            this.loading = false;
+        },
+    };
+}
+</script>
 @endsection
