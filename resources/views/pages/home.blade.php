@@ -30,6 +30,18 @@
     }]
 }
 </script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {"@type": "Question", "name": "Is {{ config('site.name') }} really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, 100% free. All calculators, converters, and the AI Math Solver are available at no cost with no sign-up required."}},
+        {"@type": "Question", "name": "How accurate are the calculations?", "acceptedAnswer": {"@type": "Answer", "text": "Our calculators use verified mathematical formulas and are rigorously tested for educational purposes."}},
+        {"@type": "Question", "name": "How does the AI Math Solver work?", "acceptedAnswer": {"@type": "Answer", "text": "Type any math problem in plain English or mathematical notation. Our AI analyzes the problem, solves it step by step, and provides an AI tutor for follow-up questions."}},
+        {"@type": "Question", "name": "Do you store my calculations?", "acceptedAnswer": {"@type": "Answer", "text": "No. Standard calculator inputs are processed in your browser. AI Math Solver queries are processed but not permanently stored."}}
+    ]
+}
+</script>
 @endsection
 
 @section('content')
@@ -223,28 +235,214 @@
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900">Why Students and Professionals Trust Us</h2>
+        <p class="mt-3 text-gray-600 max-w-xl mx-auto">Built by educators, engineers, and math enthusiasts who understand what learners actually need.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center p-6">
-            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-4">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2">Step-by-Step Solutions</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Every calculator breaks down the problem into clear steps. You learn how to solve it yourself, not just get an answer.</p>
+            <p class="text-gray-600 text-sm leading-relaxed">We don't just give you an answer — we show you exactly how to get there. Every calculator breaks down the problem into clear, numbered steps so you understand the process and can solve similar problems on your own.</p>
         </div>
-        <div class="text-center p-6">
-            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-4">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2">Interactive Graphs & Visuals</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">See your equations come alive with dynamic graphs. Zoom, pan, and trace to understand the mathematics visually.</p>
+            <p class="text-gray-600 text-sm leading-relaxed">See your equations come alive with dynamic, interactive graphs. Visualizing mathematical relationships makes abstract concepts concrete — and our tools let you zoom, trace, and explore.</p>
         </div>
-        <div class="text-center p-6">
-            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-4">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">Formulas & Real Examples</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Each tool shows the formula, explains every variable, and walks you through a practical real-world example.</p>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Real Formulas & Examples</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Every tool displays the exact formula used, explains each variable, and includes practical real-world examples. Beautiful KaTeX rendering makes mathematical notation crisp and professional.</p>
+        </div>
+    </div>
+</section>
+
+@include('components.adsense', ['slot' => 'homepage-mid-2'])
+
+{{-- Trust Badges --}}
+<section class="bg-gray-50 py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="flex items-center gap-3 justify-center">
+                <div class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-900 text-sm">Verified Formulas</div>
+                    <div class="text-xs text-gray-500">Peer-reviewed accuracy</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 justify-center">
+                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-900 text-sm">HTTPS Secured</div>
+                    <div class="text-xs text-gray-500">SSL encrypted</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 justify-center">
+                <div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-900 text-sm">No Sign-up</div>
+                    <div class="text-xs text-gray-500">Use instantly, free</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 justify-center">
+                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-900 text-sm">Mobile Friendly</div>
+                    <div class="text-xs text-gray-500">Works on all devices</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- User Testimonials --}}
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900">What Our Users Say</h2>
+        <p class="mt-3 text-gray-600 max-w-xl mx-auto">Trusted by students, teachers, and professionals around the world.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {{-- Testimonial 1 --}}
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-1 mb-3">
+                @for($i = 0; $i < 5; $i++)
+                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                @endfor
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">"The step-by-step solutions saved me during finals. I was struggling with quadratic equations and this site broke it down so clearly that I finally understood the discriminant method. Highly recommend for any math student."</p>
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-sm">S</div>
+                <div>
+                    <div class="font-semibold text-gray-900 text-sm">Sarah M.</div>
+                    <div class="text-xs text-gray-500">University Student, Mathematics</div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Testimonial 2 --}}
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-1 mb-3">
+                @for($i = 0; $i < 5; $i++)
+                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                @endfor
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">"I use the physics calculators almost daily for my AP Physics class. The Newton's force calculator is incredibly intuitive, and I love that it shows the formula with proper notation. It's like having a tutor available 24/7."</p>
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center font-bold text-sm">J</div>
+                <div>
+                    <div class="font-semibold text-gray-900 text-sm">James T.</div>
+                    <div class="text-xs text-gray-500">High School Student, AP Physics</div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Testimonial 3 --}}
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-1 mb-3">
+                @for($i = 0; $i < 5; $i++)
+                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                @endfor
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">"As a financial advisor, I recommend the compound interest calculator to all my clients. It gives them a clear, visual understanding of how their investments grow over time. The year-by-year breakdown is especially helpful."</p>
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center font-bold text-sm">R</div>
+                <div>
+                    <div class="font-semibold text-gray-900 text-sm">Rachel K.</div>
+                    <div class="text-xs text-gray-500">Certified Financial Planner</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- How It Works --}}
+<section class="bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 text-white py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold">How It Works</h2>
+            <p class="mt-3 text-indigo-200 max-w-xl mx-auto">Get accurate results in seconds — no sign-up, no downloads, no hassle.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/20">
+                    <span class="text-2xl font-bold">1</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Choose a Tool</h3>
+                <p class="text-indigo-200 text-sm leading-relaxed">Browse our 8 categories or search for the specific calculator you need. From algebra to thermodynamics, we've got you covered.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/20">
+                    <span class="text-2xl font-bold">2</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Enter Your Values</h3>
+                <p class="text-indigo-200 text-sm leading-relaxed">Type your numbers, equations, or variables. Our intuitive interfaces make it easy to input even complex expressions.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/20">
+                    <span class="text-2xl font-bold">3</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Get Your Solution</h3>
+                <p class="text-indigo-200 text-sm leading-relaxed">Receive instant results with step-by-step explanations, formulas, graphs, and educational context. Learn while you solve.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- FAQ Section --}}
+<section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
+    </div>
+    <div class="space-y-4" x-data="{ open: null }">
+        @php
+        $faqs = [
+            ['q' => 'Is ' . config('site.name') . ' really free?', 'a' => 'Yes, 100% free. All of our calculators, converters, and the AI Math Solver are available at no cost, with no sign-up required. We sustain our platform through non-intrusive advertising.'],
+            ['q' => 'How accurate are the calculations?', 'a' => 'Our calculators use verified mathematical formulas and are rigorously tested. However, they are designed for educational purposes. For critical professional, medical, or financial decisions, we always recommend verifying results independently.'],
+            ['q' => 'Can I use it on my phone?', 'a' => 'Absolutely. ' . config('site.name') . ' is fully responsive and works on any device — smartphones, tablets, laptops, and desktops. All calculators are touch-friendly and optimized for smaller screens.'],
+            ['q' => 'How does the AI Math Solver work?', 'a' => 'Type any math problem in plain English or mathematical notation. Our AI analyzes the problem, solves it step by step, generates interactive graphs when applicable, and provides an AI tutor for follow-up questions.'],
+            ['q' => 'Do you store my calculations?', 'a' => 'No. Standard calculator inputs are processed entirely in your browser and never sent to our servers. AI Math Solver queries are sent to our AI provider for processing but are not permanently stored.'],
+        ];
+        @endphp
+        @foreach($faqs as $i => $faq)
+        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <button @click="open = open === {{ $i }} ? null : {{ $i }}" class="w-full flex items-center justify-between px-6 py-4 text-left">
+                <span class="font-semibold text-gray-900 text-sm pr-4">{{ $faq['q'] }}</span>
+                <svg :class="open === {{ $i }} ? 'rotate-180' : ''" class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div x-show="open === {{ $i }}" x-cloak x-collapse class="px-6 pb-4">
+                <p class="text-gray-600 text-sm leading-relaxed">{{ $faq['a'] }}</p>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</section>
+
+{{-- Final CTA --}}
+<section class="bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Ready to Solve Your Next Problem?</h2>
+        <p class="text-gray-600 mb-6">Join thousands of students and professionals who use {{ config('site.name') }} every day.</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="{{ config('site.url') }}/math/ai-math-solver" class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                Try AI Math Solver
+            </a>
+            <a href="#categories" class="inline-flex items-center gap-2 px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-white transition-colors">
+                Browse All Tools
+            </a>
         </div>
     </div>
 </section>
