@@ -430,6 +430,34 @@
     </div>
 </section>
 
+{{-- Complete Tool Index — ensures every tool gets a dofollow link from homepage --}}
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold text-gray-900">All Calculators & Tools</h2>
+        <p class="mt-3 text-gray-600 max-w-xl mx-auto">Browse our complete collection — every tool is free, includes step-by-step solutions, and works on any device.</p>
+    </div>
+
+    @php $allToolsForIndex = \App\Helpers\ToolRegistry::all(); @endphp
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        @foreach(config('site.categories') as $catSlug => $cat)
+        <div>
+            <h3 class="font-bold text-gray-900 mb-3">
+                <a href="{{ config('site.url') }}/{{ $catSlug }}" class="hover:text-indigo-600 transition-colors">{{ $cat['name'] }}</a>
+            </h3>
+            <ul class="space-y-1.5">
+                @foreach($allToolsForIndex[$catSlug] ?? [] as $tool)
+                <li>
+                    <a href="{{ config('site.url') }}/{{ $catSlug }}/{{ $tool['slug'] }}" class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">
+                        {{ $tool['title'] }}
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+        @endforeach
+    </div>
+</section>
+
 {{-- Final CTA --}}
 <section class="bg-gray-50 py-12">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -29,6 +29,8 @@
         </div>
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Key Reference Points</h2>
         <table class="w-full text-sm text-gray-600 mb-6"><thead><tr class="border-b"><th class="text-left py-2">Event</th><th class="py-2">°C</th><th class="py-2">°F</th><th class="py-2">K</th></tr></thead><tbody><tr class="border-b border-gray-100"><td class="py-2">Water freezes</td><td class="text-center">0</td><td class="text-center">32</td><td class="text-center">273.15</td></tr><tr class="border-b border-gray-100"><td class="py-2">Body temperature</td><td class="text-center">37</td><td class="text-center">98.6</td><td class="text-center">310.15</td></tr><tr><td class="py-2">Water boils</td><td class="text-center">100</td><td class="text-center">212</td><td class="text-center">373.15</td></tr></tbody></table>
+
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
     </div>
 </div>
 @endsection

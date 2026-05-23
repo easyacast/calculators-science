@@ -76,11 +76,7 @@
             </table>
         </div>
 
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Related Tools</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <a href="{{ config('site.url') }}/unit-converter/weight-converter" class="block bg-white border border-gray-200 hover:border-purple-300 rounded-lg p-4"><h3 class="font-semibold text-gray-900 text-sm">Weight Converter</h3></a>
-            <a href="{{ config('site.url') }}/unit-converter/temperature-converter" class="block bg-white border border-gray-200 hover:border-purple-300 rounded-lg p-4"><h3 class="font-semibold text-gray-900 text-sm">Temperature Converter</h3></a>
-        </div>
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
     </div>
 </div>
 @endsection

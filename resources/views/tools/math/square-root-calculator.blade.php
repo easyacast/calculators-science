@@ -32,6 +32,8 @@
         <div class="bg-gray-50 rounded-lg p-4 mb-4 text-center"><p class="formula-block">$$\sqrt[n]{x} = x^{1/n}$$</p></div>
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Perfect Squares (1-20)</h2>
         <p class="text-gray-600 mb-6">1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400.</p>
+
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
     </div>
 </div>
 @endsection

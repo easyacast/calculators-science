@@ -402,18 +402,7 @@
             </details>
         </div>
 
-        {{-- Internal Links --}}
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Related Tools</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <a href="{{ config('site.url') }}/math/quadratic-equation-calculator" class="block bg-white border border-gray-200 hover:border-indigo-300 rounded-lg p-4 transition-colors">
-                <h3 class="font-semibold text-gray-900 text-sm">Quadratic Equation Calculator</h3>
-                <p class="text-xs text-gray-500 mt-1">Dedicated calculator for quadratic equations with graphing.</p>
-            </a>
-            <a href="{{ config('site.url') }}/math/percentage-calculator" class="block bg-white border border-gray-200 hover:border-indigo-300 rounded-lg p-4 transition-colors">
-                <h3 class="font-semibold text-gray-900 text-sm">Percentage Calculator</h3>
-                <p class="text-xs text-gray-500 mt-1">Quick percentage calculations with multiple modes.</p>
-            </a>
-        </div>
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
     </div>
 </div>
 @endsection

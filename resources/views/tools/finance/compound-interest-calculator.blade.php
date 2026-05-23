@@ -118,11 +118,7 @@
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Example</h2>
         <p class="text-gray-600 mb-6">If you invest $10,000 at 7% annually compounded monthly for 10 years: $A = 10000(1 + 0.07/12)^{120} = $20,096.61$. Your money doubles in about 10 years.</p>
 
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Related Tools</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <a href="{{ config('site.url') }}/math/percentage-calculator" class="block bg-white border border-gray-200 hover:border-green-300 rounded-lg p-4"><h3 class="font-semibold text-gray-900 text-sm">Percentage Calculator</h3></a>
-            <a href="{{ config('site.url') }}/math/ai-math-solver" class="block bg-white border border-gray-200 hover:border-green-300 rounded-lg p-4"><h3 class="font-semibold text-gray-900 text-sm">AI Math Solver</h3></a>
-        </div>
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
     </div>
 </div>
 @endsection

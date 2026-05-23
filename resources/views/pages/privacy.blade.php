@@ -87,4 +87,7 @@
         </div>
     </div>
 </div>
+
+@include('components.static-page-links', ['currentPage' => 'privacy'])
+
 @endsection

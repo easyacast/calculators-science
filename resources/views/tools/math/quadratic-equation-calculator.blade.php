@@ -145,18 +145,7 @@
             </details>
         </div>
 
-        {{-- Related Tools --}}
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Related Tools</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <a href="{{ config('site.url') }}/math/ai-math-solver" class="block bg-white border border-gray-200 hover:border-indigo-300 rounded-lg p-4 transition-colors">
-                <h3 class="font-semibold text-gray-900 text-sm">AI Math Solver</h3>
-                <p class="text-xs text-gray-500 mt-1">Solve any equation with AI step-by-step solutions.</p>
-            </a>
-            <a href="{{ config('site.url') }}/math/percentage-calculator" class="block bg-white border border-gray-200 hover:border-indigo-300 rounded-lg p-4 transition-colors">
-                <h3 class="font-semibold text-gray-900 text-sm">Percentage Calculator</h3>
-                <p class="text-xs text-gray-500 mt-1">Calculate percentages, increases, and decreases.</p>
-            </a>
-        </div>
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
     </div>
 </div>
 @endsection

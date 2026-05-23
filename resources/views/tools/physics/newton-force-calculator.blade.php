@@ -81,11 +81,7 @@
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Example</h2>
         <p class="text-gray-600 mb-6">A 1,500 kg car accelerates at 3 m/s². What is the net force? $F = 1500 \times 3 = 4,500$ N. That is 4,500 Newtons of force.</p>
 
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Related Tools</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <a href="{{ config('site.url') }}/physics/velocity-calculator" class="block bg-white border border-gray-200 hover:border-amber-300 rounded-lg p-4"><h3 class="font-semibold text-gray-900 text-sm">Velocity Calculator</h3></a>
-            <a href="{{ config('site.url') }}/math/ai-math-solver" class="block bg-white border border-gray-200 hover:border-amber-300 rounded-lg p-4"><h3 class="font-semibold text-gray-900 text-sm">AI Math Solver</h3></a>
-        </div>
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
     </div>
 </div>
 @endsection

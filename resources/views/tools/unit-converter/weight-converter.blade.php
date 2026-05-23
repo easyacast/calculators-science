@@ -26,6 +26,8 @@
     <div class="max-w-3xl">
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Common Weight Conversions</h2>
         <table class="w-full text-sm text-gray-600 mb-6"><thead><tr class="border-b"><th class="text-left py-2">From</th><th class="text-left py-2">To</th><th class="text-left py-2">Factor</th></tr></thead><tbody><tr class="border-b border-gray-100"><td class="py-2">1 kg</td><td>pounds</td><td>2.20462</td></tr><tr class="border-b border-gray-100"><td class="py-2">1 pound</td><td>ounces</td><td>16</td></tr><tr><td class="py-2">1 stone</td><td>pounds</td><td>14</td></tr></tbody></table>
+
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
     </div>
 </div>
 @endsection

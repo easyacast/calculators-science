@@ -80,16 +80,14 @@
                 </ul>
             </div>
 
-            {{-- Popular Tools --}}
+            {{-- Popular Tools (auto-detected from registry) --}}
             <div>
                 <h3 class="text-white font-semibold mb-4">Popular Tools</h3>
                 <ul class="space-y-2">
-                    <li><a href="{{ config('site.url') }}/math/ai-math-solver" class="text-sm text-gray-400 hover:text-white transition-colors">AI Math Solver</a></li>
-                    <li><a href="{{ config('site.url') }}/math/quadratic-equation-calculator" class="text-sm text-gray-400 hover:text-white transition-colors">Quadratic Equation Calculator</a></li>
-                    <li><a href="{{ config('site.url') }}/math/percentage-calculator" class="text-sm text-gray-400 hover:text-white transition-colors">Percentage Calculator</a></li>
-                    <li><a href="{{ config('site.url') }}/health/bmi-calculator" class="text-sm text-gray-400 hover:text-white transition-colors">BMI Calculator</a></li>
-                    <li><a href="{{ config('site.url') }}/unit-converter/length-converter" class="text-sm text-gray-400 hover:text-white transition-colors">Length Converter</a></li>
-                    <li><a href="{{ config('site.url') }}/finance/compound-interest-calculator" class="text-sm text-gray-400 hover:text-white transition-colors">Compound Interest Calculator</a></li>
+                    @php $footerTools = \App\Helpers\ToolRegistry::getPopularTools(8); @endphp
+                    @foreach($footerTools as $ft)
+                    <li><a href="{{ $ft['url'] }}" class="text-sm text-gray-400 hover:text-white transition-colors">{{ $ft['title'] }}</a></li>
+                    @endforeach
                 </ul>
             </div>
 

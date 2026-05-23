@@ -65,6 +65,8 @@
 
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Example</h2>
         <p class="text-gray-600 mb-6">At STP (1 atm, 273.15 K), one mole of an ideal gas occupies: $V = \frac{nRT}{P} = \frac{1 \times 0.08206 \times 273.15}{1} = 22.41$ L</p>
+
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
     </div>
 </div>
 @endsection

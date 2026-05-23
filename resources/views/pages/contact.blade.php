@@ -128,4 +128,6 @@
     @endif
 </div>
 
+@include('components.static-page-links', ['currentPage' => 'contact'])
+
 @endsection

@@ -134,4 +134,6 @@
     </div>
 </section>
 
+@include('components.static-page-links', ['currentPage' => 'about'])
+
 @endsection

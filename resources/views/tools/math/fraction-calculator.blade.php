@@ -33,6 +33,8 @@
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Fraction Operations</h2>
         <div class="bg-gray-50 rounded-lg p-4 mb-4 text-center"><p class="formula-block">$$\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}$$</p></div>
         <div class="bg-gray-50 rounded-lg p-4 mb-4 text-center"><p class="formula-block">$$\frac{a}{b} \times \frac{c}{d} = \frac{ac}{bd}$$</p></div>
+
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
     </div>
 </div>
 @endsection
