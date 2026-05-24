@@ -38,11 +38,11 @@
     {{-- Tools Grid --}}
     @if(count($tools) > 0)
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        @foreach($tools as $tool)
+        @foreach($tools as $toolSlug => $tool)
         @include('components.tool-card', [
             'title' => $tool['title'],
             'description' => $tool['description'],
-            'url' => config('site.url') . '/' . $categorySlug . '/' . $tool['slug'],
+            'url' => config('site.url') . '/' . $categorySlug . '/' . $toolSlug,
             'category' => $category['name'],
             'color' => $category['color'],
         ])

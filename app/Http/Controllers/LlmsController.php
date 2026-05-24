@@ -114,8 +114,8 @@ class LlmsController extends Controller
             if (!empty($tools)) {
                 $lines[] = "| Tool | URL | Description |";
                 $lines[] = "|------|-----|-------------|";
-                foreach ($tools as $tool) {
-                    $lines[] = "| {$tool['title']} | {$siteUrl}/{$slug}/{$tool['slug']} | {$tool['description']} |";
+                foreach ($tools as $toolSlug => $tool) {
+                    $lines[] = "| {$tool['title']} | {$siteUrl}/{$slug}/{$toolSlug} | {$tool['description']} |";
                 }
                 $lines[] = "";
             }

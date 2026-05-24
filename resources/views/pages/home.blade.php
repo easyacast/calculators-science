@@ -445,9 +445,9 @@
                 <a href="{{ config('site.url') }}/{{ $catSlug }}" class="hover:text-indigo-600 transition-colors">{{ $cat['name'] }}</a>
             </h3>
             <ul class="space-y-1.5">
-                @foreach($allToolsForIndex[$catSlug] ?? [] as $tool)
+                @foreach($allToolsForIndex[$catSlug] ?? [] as $toolSlug => $tool)
                 <li>
-                    <a href="{{ config('site.url') }}/{{ $catSlug }}/{{ $tool['slug'] }}" class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">
+                    <a href="{{ config('site.url') }}/{{ $catSlug }}/{{ $toolSlug }}" class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">
                         {{ $tool['title'] }}
                     </a>
                 </li>

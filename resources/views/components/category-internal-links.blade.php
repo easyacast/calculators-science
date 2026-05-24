@@ -9,11 +9,12 @@
     $otherCategoryTools = [];
     foreach (ToolRegistry::all() as $catSlug => $tools) {
         if ($catSlug === $currentCategorySlug || empty($tools)) continue;
-        $tool = $tools[0];
+        $firstSlug = array_key_first($tools);
+        $tool = $tools[$firstSlug];
         $otherCategoryTools[] = [
             'title' => $tool['title'],
             'description' => $tool['description'],
-            'url' => $baseUrl . '/' . $catSlug . '/' . $tool['slug'],
+            'url' => $baseUrl . '/' . $catSlug . '/' . $firstSlug,
             'category' => $categories[$catSlug]['name'] ?? ucfirst($catSlug),
             'categorySlug' => $catSlug,
         ];

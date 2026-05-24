@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Response;
+use App\Helpers\ToolRegistry;
 
 class SitemapController extends Controller
 {
@@ -68,21 +69,10 @@ class SitemapController extends Controller
     }
 
     /**
-     * Get tool slugs for a category.
+     * Get tool slugs for a category from ToolRegistry.
      */
     private function getToolSlugs(string $category): array
     {
-        $tools = [
-            'math' => ['ai-math-solver', 'quadratic-equation-calculator', 'percentage-calculator', 'fraction-calculator', 'square-root-calculator', 'exponent-calculator', 'gcd-lcm-calculator', 'logarithm-calculator'],
-            'physics' => ['newton-force-calculator', 'velocity-calculator', 'ohms-law-calculator', 'kinetic-energy-calculator', 'momentum-calculator'],
-            'chemistry' => ['ideal-gas-law-calculator', 'molar-mass-calculator', 'ph-calculator', 'dilution-calculator'],
-            'biology' => ['hardy-weinberg-calculator', 'population-growth-calculator'],
-            'finance' => ['compound-interest-calculator', 'emi-calculator', 'roi-calculator', 'mortgage-calculator'],
-            'engineering' => ['beam-deflection-calculator', 'resistor-color-code'],
-            'unit-converter' => ['length-converter', 'weight-converter', 'temperature-converter', 'speed-converter'],
-            'health' => ['bmi-calculator', 'bmr-calculator', 'calorie-calculator'],
-        ];
-
-        return $tools[$category] ?? [];
+        return array_keys(ToolRegistry::forCategory($category));
     }
 }
