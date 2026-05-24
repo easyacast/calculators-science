@@ -1,7 +1,18 @@
 {
+  "resources/css/ai-math-solver.css": {
+    "file": "assets/ai-math-solver-DFnbT1g3.css",
+    "src": "resources/css/ai-math-solver.css",
+    "isEntry": true
+  },
   "resources/css/app.css": {
-    "file": "assets/app-qsXeSVeF.css",
+    "file": "assets/app-BoS3e_jP.css",
     "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/ai-math-solver-workspace.js": {
+    "file": "assets/ai-math-solver-workspace-DD_Bc_37.js",
+    "name": "ai-math-solver-workspace",
+    "src": "resources/js/ai-math-solver-workspace.js",
     "isEntry": true
   },
   "resources/js/app.js": {

@@ -121,6 +121,11 @@ return [
     'api' => [
         'groq_api_key' => env('GROQ_API_KEY', ''),
         'groq_model' => env('GROQ_MODEL', 'llama-3.3-70b-versatile'),
+        'groq_vision_model' => env('GROQ_VISION_MODEL', 'meta-llama/llama-4-scout-17b-16e-instruct'),
+        'gemini_api_key' => env('GEMINI_API_KEY', ''),
+        'gemini_model' => env('GEMINI_MODEL', 'gemini-2.0-flash'),
+        'deepseek_api_key' => env('DEEPSEEK_API_KEY', ''),
+        'deepseek_model' => env('DEEPSEEK_MODEL', 'deepseek-chat'),
     ],
 
     /*
