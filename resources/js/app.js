@@ -34,4 +34,6 @@ window.shareButtons = function() {
     };
 };
 
-Alpine.start();
+// Delay start so page-specific modules (loaded via @yield('head'))
+// can register their components before Alpine processes the DOM.
+setTimeout(() => Alpine.start(), 0);

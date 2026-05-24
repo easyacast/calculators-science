@@ -36,7 +36,7 @@
 </script>
 @endsection
 
-@section('scripts')
+@section('head')
 @vite(['resources/css/ai-math-solver.css', 'resources/js/ai-math-solver-workspace.js'])
 @endsection
 

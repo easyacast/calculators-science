@@ -301,8 +301,8 @@
 
                 {{-- Image OCR info --}}
                 <div x-show="response?.extractedText || response?.extractedLatex" class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-sm text-slate-600">
-                    <p x-show="response?.extractedText"><strong>Read from image:</strong> <span x-text="response.extractedText"></span></p>
-                    <p x-show="response?.extractedLatex" class="formula-block text-center my-2">$$<span x-text="response.extractedLatex"></span>$$</p>
+                    <p x-show="response?.extractedText"><strong>Read from image:</strong> <span x-text="response?.extractedText || ''"></span></p>
+                    <p x-show="response?.extractedLatex" class="formula-block text-center my-2">$$<span x-text="response?.extractedLatex || ''"></span>$$</p>
                 </div>
 
                 {{-- Engine selector --}}
@@ -347,7 +347,7 @@
                         <div x-show="selectedEngine === 'consensus' && response?.synthesis?.comparisonMarkdown"
                             class="mb-6 bg-indigo-50/50 border border-indigo-100 rounded-2xl p-5">
                             <h4 class="font-bold text-indigo-950 text-sm mb-2">AI Referee Peer Review Analysis</h4>
-                            <div class="text-sm text-slate-700 whitespace-pre-wrap" x-text="response.synthesis.comparisonMarkdown"></div>
+                            <div class="text-sm text-slate-700 whitespace-pre-wrap" x-text="response?.synthesis?.comparisonMarkdown || ''"></div>
                         </div>
                         <template x-for="(step, idx) in activeSteps" :key="idx">
                             <div class="flex gap-4 border border-gray-100 rounded-xl p-4">

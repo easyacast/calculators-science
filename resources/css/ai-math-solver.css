@@ -8,30 +8,22 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
-/* Base resets & custom animations */
-body {
-  font-family: var(--font-sans);
-  background-color: #FAFAFA;
-  color: #1F2937;
-  overflow-x: hidden;
-}
-
-/* Custom scrollbars for clean UI panels */
-::-webkit-scrollbar {
+/* Workspace-specific scrollbar styling */
+#ai-math-solver-workspace ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
-::-webkit-scrollbar-track {
+#ai-math-solver-workspace ::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+#ai-math-solver-workspace ::-webkit-scrollbar-thumb {
   background: #E5E7EB;
   border-radius: 9999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+#ai-math-solver-workspace ::-webkit-scrollbar-thumb:hover {
   background: #D1D5DB;
 }
 
