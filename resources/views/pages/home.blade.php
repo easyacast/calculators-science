@@ -438,17 +438,22 @@
     </div>
 
     @php $allToolsForIndex = \App\Helpers\ToolRegistry::all(); @endphp
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         @foreach(config('site.categories') as $catSlug => $cat)
-        <div>
-            <h3 class="font-bold text-gray-900 mb-3">
-                <a href="{{ config('site.url') }}/{{ $catSlug }}" class="hover:text-indigo-600 transition-colors">{{ $cat['name'] }}</a>
-            </h3>
-            <ul class="space-y-1.5">
+        <div class="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-lg transition-shadow duration-200">
+            <a href="{{ config('site.url') }}/{{ $catSlug }}" class="flex items-center gap-2 mb-4 group">
+                <div class="w-8 h-8 bg-indigo-50 group-hover:bg-indigo-100 rounded-lg flex items-center justify-center transition-colors">
+                    <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                </div>
+                <h3 class="font-bold text-gray-900 group-hover:text-indigo-600 transition-colors text-sm">{{ $cat['name'] }}</h3>
+                <span class="text-xs text-gray-400 ml-auto">({{ count($allToolsForIndex[$catSlug] ?? []) }})</span>
+            </a>
+            <ul class="space-y-1 max-h-48 overflow-y-auto pr-1" style="scrollbar-width: thin;">
                 @foreach($allToolsForIndex[$catSlug] ?? [] as $toolSlug => $tool)
                 <li>
-                    <a href="{{ config('site.url') }}/{{ $catSlug }}/{{ $toolSlug }}" class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">
-                        {{ $tool['title'] }}
+                    <a href="{{ config('site.url') }}/{{ $catSlug }}/{{ $toolSlug }}" class="flex items-center gap-2 text-sm text-gray-600 hover:text-indigo-600 py-1 px-2 rounded-md hover:bg-indigo-50 transition-all group">
+                        <svg class="w-3 h-3 text-gray-300 group-hover:text-indigo-400 flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        <span class="truncate">{{ $tool['title'] }}</span>
                     </a>
                 </li>
                 @endforeach
