@@ -16,6 +16,15 @@
 @endsection
 
 @section('content')
+@php
+    $aboutAllTools = \App\Helpers\ToolRegistry::all();
+    $aboutTotalTools = 0;
+    $aboutCategoryCount = 0;
+    foreach (config('site.categories') as $slug => $cat) {
+        $tc = count(($aboutAllTools[$slug] ?? [])['tools'] ?? []);
+        if ($tc > 0) { $aboutTotalTools += $tc; $aboutCategoryCount++; }
+    }
+@endphp
 
 {{-- Hero Section --}}
 <section class="bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 text-white">
@@ -45,11 +54,11 @@
         <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
             <div class="grid grid-cols-2 gap-6">
                 <div class="text-center">
-                    <div class="text-3xl font-bold text-indigo-600">50+</div>
+                    <div class="text-3xl font-bold text-indigo-600">{{ number_format($aboutTotalTools) }}+</div>
                     <div class="text-sm text-gray-600 mt-1">Calculators & Tools</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl font-bold text-indigo-600">8</div>
+                    <div class="text-3xl font-bold text-indigo-600">{{ $aboutCategoryCount }}</div>
                     <div class="text-sm text-gray-600 mt-1">Scientific Categories</div>
                 </div>
                 <div class="text-center">

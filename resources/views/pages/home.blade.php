@@ -69,14 +69,14 @@
             </div>
         </div>
 
-        {{-- Quick Stats --}}
+        {{-- Quick Stats — auto-detected from registry --}}
         <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
             <div class="text-center">
-                <div class="text-2xl font-bold">50+</div>
+                <div class="text-2xl font-bold">{{ number_format($totalTools) }}+</div>
                 <div class="text-sm text-indigo-200">Calculators</div>
             </div>
             <div class="text-center">
-                <div class="text-2xl font-bold">8</div>
+                <div class="text-2xl font-bold">{{ $categoryCount }}</div>
                 <div class="text-sm text-indigo-200">Categories</div>
             </div>
             <div class="text-center">
@@ -223,7 +223,7 @@
                 'description' => $tool['description'],
                 'url' => $tool['url'],
                 'category' => $tool['category'],
-                'color' => $tool['color'],
+                'color' => $tool['color'] ?? 'indigo',
                 'featured' => $tool['featured'] ?? false,
             ])
             @endforeach
@@ -264,13 +264,34 @@
 
 @include('components.adsense', ['slot' => 'homepage-mid-2'])
 
-{{-- Trust Badges --}}
+{{-- Authority Trust Strip --}}
 <section class="bg-gray-50 py-12">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8">
+            <p class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Trusted by students and professionals worldwide</p>
+        </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div class="flex items-center gap-3 justify-center">
                 <div class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center flex-shrink-0">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-900 text-sm">{{ number_format($totalTools) }}+ Tools</div>
+                    <div class="text-xs text-gray-500">Professional-grade calculators</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 justify-center">
+                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-900 text-sm">Educational Focus</div>
+                    <div class="text-xs text-gray-500">Step-by-step explanations</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 justify-center">
+                <div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
                 <div>
                     <div class="font-semibold text-gray-900 text-sm">Verified Formulas</div>
@@ -278,30 +299,12 @@
                 </div>
             </div>
             <div class="flex items-center gap-3 justify-center">
-                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                </div>
-                <div>
-                    <div class="font-semibold text-gray-900 text-sm">HTTPS Secured</div>
-                    <div class="text-xs text-gray-500">SSL encrypted</div>
-                </div>
-            </div>
-            <div class="flex items-center gap-3 justify-center">
-                <div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
-                </div>
-                <div>
-                    <div class="font-semibold text-gray-900 text-sm">No Sign-up</div>
-                    <div class="text-xs text-gray-500">Use instantly, free</div>
-                </div>
-            </div>
-            <div class="flex items-center gap-3 justify-center">
                 <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                 </div>
                 <div>
-                    <div class="font-semibold text-gray-900 text-sm">Mobile Friendly</div>
-                    <div class="text-xs text-gray-500">Works on all devices</div>
+                    <div class="font-semibold text-gray-900 text-sm">AI Powered</div>
+                    <div class="text-xs text-gray-500">Multi-engine math solving</div>
                 </div>
             </div>
         </div>
@@ -381,7 +384,7 @@
                     <span class="text-2xl font-bold">1</span>
                 </div>
                 <h3 class="text-lg font-semibold mb-2">Choose a Tool</h3>
-                <p class="text-indigo-200 text-sm leading-relaxed">Browse our 8 categories or search for the specific calculator you need. From algebra to thermodynamics, we've got you covered.</p>
+                <p class="text-indigo-200 text-sm leading-relaxed">Browse our {{ $categoryCount }} categories or search for the specific calculator you need. From algebra to real estate investing, we've got you covered.</p>
             </div>
             <div class="text-center">
                 <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/20">
@@ -439,7 +442,7 @@
 
     @php $allToolsForIndex = \App\Helpers\ToolRegistry::all(); @endphp
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        @foreach(config('site.categories') as $catSlug => $cat)
+        @foreach($categories as $catSlug => $cat)
         <div class="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-lg transition-shadow duration-200">
             <a href="{{ config('site.url') }}/{{ $catSlug }}" class="flex items-center gap-2 mb-4 group">
                 <div class="w-8 h-8 bg-indigo-50 group-hover:bg-indigo-100 rounded-lg flex items-center justify-center transition-colors">
@@ -516,15 +519,18 @@ function homeSolver() {
 
                 const data = await res.json();
                 if (data.steps && data.steps.length) {
-                    this.steps = data.steps;
-                    this.answer = data.answer || '';
+                    this.steps = data.steps.map(s => ({
+                        title: s.title || '',
+                        text: s.explanation || s.text || ''
+                    }));
+                    this.answer = data.finalAnswer || data.answer || '';
                     this.solution = true;
-                } else if (data.solution) {
-                    this.steps = [{ title: 'Solution', text: data.solution }];
-                    this.answer = data.answer || '';
+                } else if (data.finalAnswer) {
+                    this.steps = [{ title: 'Solution', text: data.finalAnswer }];
+                    this.answer = data.finalAnswer;
                     this.solution = true;
                 } else {
-                    this.error = data.error || 'Could not solve. Try the full AI Math Solver for more complex problems.';
+                    this.error = 'Could not solve. Try the full AI Math Solver for more complex problems.';
                 }
             } catch (e) {
                 this.error = 'Network error. Please try again.';

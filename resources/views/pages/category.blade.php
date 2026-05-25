@@ -3,6 +3,9 @@
 @section('title', $category['meta_title'])
 @section('meta_description', $category['meta_description'])
 @section('canonical', config('site.url') . '/' . $categorySlug)
+@if(count($tools) === 0)
+@section('robots', 'noindex, follow')
+@endif
 
 @section('schema')
 <script type="application/ld+json">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ToolRegistry;
 use App\Services\MathSolverService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -10,6 +11,50 @@ class ApiController extends Controller
 {
     public function __construct(private MathSolverService $solver)
     {
+    }
+
+    public function search(Request $request): JsonResponse
+    {
+        $query = trim((string) $request->input('q', ''));
+        if (mb_strlen($query) < 2) {
+            return response()->json([]);
+        }
+
+        $allTools = ToolRegistry::all();
+        $baseUrl = config('site.url');
+        $categories = config('site.categories');
+        $queryLower = mb_strtolower($query);
+        $queryWords = array_filter(explode(' ', $queryLower));
+        $results = [];
+
+        foreach ($allTools as $catSlug => $catData) {
+            $tools = $catData['tools'] ?? [];
+            foreach ($tools as $toolSlug => $tool) {
+                $titleLower = mb_strtolower($tool['title']);
+                $descLower = mb_strtolower($tool['description'] ?? '');
+                $slugLower = str_replace('-', ' ', $toolSlug);
+
+                $score = 0;
+                if (str_contains($titleLower, $queryLower)) $score += 100;
+                foreach ($queryWords as $word) {
+                    if (str_contains($titleLower, $word)) $score += 30;
+                    if (str_contains($slugLower, $word)) $score += 20;
+                    if (str_contains($descLower, $word)) $score += 10;
+                }
+
+                if ($score > 0) {
+                    $results[] = [
+                        'title' => $tool['title'],
+                        'url' => $baseUrl . '/' . $catSlug . '/' . $toolSlug,
+                        'category' => $categories[$catSlug]['name'] ?? ucfirst($catSlug),
+                        'score' => $score,
+                    ];
+                }
+            }
+        }
+
+        usort($results, fn($a, $b) => $b['score'] - $a['score']);
+        return response()->json(array_slice($results, 0, 10));
     }
 
     public function solve(Request $request): JsonResponse

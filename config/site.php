@@ -120,12 +120,18 @@ return [
     */
     'api' => [
         'groq_api_key' => env('GROQ_API_KEY', ''),
+        'groq_api_keys' => env('GROQ_API_KEYS', ''),
         'groq_model' => env('GROQ_MODEL', 'llama-3.3-70b-versatile'),
         'groq_vision_model' => env('GROQ_VISION_MODEL', 'meta-llama/llama-4-scout-17b-16e-instruct'),
         'gemini_api_key' => env('GEMINI_API_KEY', ''),
+        'gemini_api_keys' => env('GEMINI_API_KEYS', ''),
         'gemini_model' => env('GEMINI_MODEL', 'gemini-2.0-flash'),
         'deepseek_api_key' => env('DEEPSEEK_API_KEY', ''),
+        'deepseek_api_keys' => env('DEEPSEEK_API_KEYS', ''),
         'deepseek_model' => env('DEEPSEEK_MODEL', 'deepseek-chat'),
+        'mistral_api_key' => env('MISTRAL_API_KEY', ''),
+        'mistral_api_keys' => env('MISTRAL_API_KEYS', ''),
+        'mistral_model' => env('MISTRAL_MODEL', 'mistral-large-latest'),
     ],
 
     /*

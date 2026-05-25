@@ -1,4 +1,12 @@
 {{-- Site Footer --}}
+@php
+    $footerAllTools = \App\Helpers\ToolRegistry::all();
+    $footerCategories = [];
+    foreach (config('site.categories') as $slug => $cat) {
+        $tc = count(($footerAllTools[$slug] ?? [])['tools'] ?? []);
+        if ($tc > 0) $footerCategories[$slug] = $cat;
+    }
+@endphp
 <footer class="bg-gray-900 text-gray-300 mt-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -66,11 +74,11 @@
                 @endif
             </div>
 
-            {{-- Categories --}}
+            {{-- Categories (only non-empty) --}}
             <div>
                 <h3 class="text-white font-semibold mb-4">Categories</h3>
                 <ul class="space-y-2">
-                    @foreach(config('site.categories') as $slug => $cat)
+                    @foreach($footerCategories as $slug => $cat)
                     <li>
                         <a href="{{ config('site.url') }}/{{ $slug }}" class="text-sm text-gray-400 hover:text-white transition-colors">
                             {{ $cat['name'] }}

@@ -17,6 +17,7 @@
         </div>
         @php $allTools = \App\Helpers\ToolRegistry::all(); @endphp
         @foreach($categories as $slug => $cat)
+        @if(count(($allTools[$slug] ?? [])['tools'] ?? []) > 0)
         <div>
             <h2 class="text-xl font-bold text-gray-900 mb-3">
                 <a href="{{ config('site.url') }}/{{ $slug }}" class="hover:text-indigo-600">{{ $cat['name'] }}</a>
@@ -28,6 +29,7 @@
                 @endforeach
             </ul>
         </div>
+        @endif
         @endforeach
     </div>
 </div>

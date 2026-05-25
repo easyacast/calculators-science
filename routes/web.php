@@ -29,6 +29,12 @@ Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy
 Route::get('/terms-of-service', [PageController::class, 'terms'])->name('terms');
 Route::get('/sitemap', [PageController::class, 'sitemapHtml'])->name('sitemap.html');
 
+// Search
+Route::get('/search', [PageController::class, 'search'])->name('search');
+
+// API: instant search suggestions (internal, no indexing)
+Route::get('/api/search', [ApiController::class, 'search']);
+
 // XML Sitemaps
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.xml');
 Route::get('/sitemap-{category}.xml', [SitemapController::class, 'category'])->name('sitemap.category');

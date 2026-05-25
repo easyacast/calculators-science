@@ -3,6 +3,7 @@
 @section('title', 'AI Math Solver - Step by Step Solutions with Graphs')
 @section('meta_description', 'Solve any math problem instantly with our free AI Math Solver. Get step-by-step solutions, interactive graphs, and AI tutoring for algebra, calculus, trigonometry, and more.')
 @section('canonical', config('site.url') . '/math/ai-math-solver')
+@section('robots', !empty($solverQuery) ? 'noindex, follow' : 'index, follow')
 @section('meta_keywords', 'ai math solver, math problem solver, step by step math, equation solver, algebra solver, calculus solver, math graph, math tutor')
 
 @section('schema')

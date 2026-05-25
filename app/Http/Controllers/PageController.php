@@ -12,69 +12,78 @@ class PageController extends Controller
      */
     public function home()
     {
-        $categories = config('site.categories');
+        $allCategories = config('site.categories');
+        $allTools = ToolRegistry::all();
 
-        $featuredTools = [
-            [
-                'title' => 'AI Math Solver',
-                'description' => 'Solve any math problem with AI-powered step-by-step solutions, interactive graphs, and tutoring.',
-                'url' => config('site.url') . '/math/ai-math-solver',
-                'category' => 'Mathematics',
-                'color' => 'indigo',
-                'featured' => true,
-            ],
-            [
-                'title' => 'Quadratic Equation Calculator',
-                'description' => 'Solve quadratic equations using the quadratic formula with detailed steps and graph visualization.',
-                'url' => config('site.url') . '/math/quadratic-equation-calculator',
-                'category' => 'Mathematics',
-                'color' => 'indigo',
-            ],
-            [
-                'title' => 'Percentage Calculator',
-                'description' => 'Calculate percentages, percentage increase/decrease, and find what percent one number is of another.',
-                'url' => config('site.url') . '/math/percentage-calculator',
-                'category' => 'Mathematics',
-                'color' => 'indigo',
-            ],
-            [
-                'title' => 'BMI Calculator',
-                'description' => 'Calculate your Body Mass Index (BMI) and understand your weight category for better health awareness.',
-                'url' => config('site.url') . '/health/bmi-calculator',
-                'category' => 'Health & Fitness',
-                'color' => 'red',
-            ],
-            [
-                'title' => 'Compound Interest Calculator',
-                'description' => 'Calculate compound interest on savings and investments with monthly or yearly compounding.',
-                'url' => config('site.url') . '/finance/compound-interest-calculator',
-                'category' => 'Finance',
-                'color' => 'green',
-            ],
-            [
-                'title' => 'Length Converter',
-                'description' => 'Convert between meters, feet, inches, centimeters, kilometers, miles, and more length units.',
-                'url' => config('site.url') . '/unit-converter/length-converter',
-                'category' => 'Unit Converters',
-                'color' => 'purple',
-            ],
-            [
-                'title' => 'Newton Force Calculator',
-                'description' => 'Calculate force, mass, or acceleration using Newton\'s Second Law of Motion (F = ma).',
-                'url' => config('site.url') . '/physics/newton-force-calculator',
-                'category' => 'Physics',
-                'color' => 'amber',
-            ],
-            [
-                'title' => 'Ideal Gas Law Calculator',
-                'description' => 'Solve for pressure, volume, temperature, or moles using the ideal gas law equation PV = nRT.',
-                'url' => config('site.url') . '/chemistry/ideal-gas-law-calculator',
-                'category' => 'Chemistry',
-                'color' => 'emerald',
-            ],
-        ];
+        // Filter out empty categories
+        $categories = [];
+        $totalTools = 0;
+        foreach ($allCategories as $slug => $cat) {
+            $toolCount = count(($allTools[$slug] ?? [])['tools'] ?? []);
+            if ($toolCount > 0) {
+                $categories[$slug] = $cat;
+                $totalTools += $toolCount;
+            }
+        }
+        $categoryCount = count($categories);
 
-        return view('pages.home', compact('categories', 'featuredTools'));
+        $featuredTools = ToolRegistry::getPopularTools(8);
+
+        return view('pages.home', compact('categories', 'featuredTools', 'totalTools', 'categoryCount'));
+    }
+
+    /**
+     * Search tools across all categories.
+     */
+    public function search(Request $request)
+    {
+        $query = trim((string) $request->input('q', ''));
+        $results = [];
+
+        if ($query !== '') {
+            $allTools = ToolRegistry::all();
+            $baseUrl = config('site.url');
+            $categories = config('site.categories');
+            $queryLower = mb_strtolower($query);
+            $queryWords = array_filter(explode(' ', $queryLower));
+
+            foreach ($allTools as $catSlug => $catData) {
+                $tools = $catData['tools'] ?? [];
+                foreach ($tools as $toolSlug => $tool) {
+                    $titleLower = mb_strtolower($tool['title']);
+                    $descLower = mb_strtolower($tool['description'] ?? '');
+                    $slugLower = str_replace('-', ' ', $toolSlug);
+
+                    // Score: exact match in title > word match in title > slug match > description match
+                    $score = 0;
+                    if (str_contains($titleLower, $queryLower)) {
+                        $score += 100;
+                    }
+                    foreach ($queryWords as $word) {
+                        if (str_contains($titleLower, $word)) $score += 30;
+                        if (str_contains($slugLower, $word)) $score += 20;
+                        if (str_contains($descLower, $word)) $score += 10;
+                    }
+
+                    if ($score > 0) {
+                        $results[] = [
+                            'title' => $tool['title'],
+                            'description' => $tool['description'] ?? '',
+                            'url' => $baseUrl . '/' . $catSlug . '/' . $toolSlug,
+                            'category' => $categories[$catSlug]['name'] ?? ucfirst($catSlug),
+                            'categorySlug' => $catSlug,
+                            'score' => $score,
+                        ];
+                    }
+                }
+            }
+
+            // Sort by score descending
+            usort($results, fn($a, $b) => $b['score'] - $a['score']);
+            $results = array_slice($results, 0, 50);
+        }
+
+        return view('pages.search', compact('query', 'results'));
     }
 
     /**

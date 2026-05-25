@@ -18,7 +18,10 @@ class SitemapController extends Controller
         $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
         $xml .= '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
 
+        $allTools = ToolRegistry::all();
         foreach ($categories as $slug => $cat) {
+            $toolCount = count(($allTools[$slug] ?? [])['tools'] ?? []);
+            if ($toolCount === 0) continue;
             $xml .= "  <sitemap>\n";
             $xml .= "    <loc>{$siteUrl}/sitemap-{$slug}.xml</loc>\n";
             $xml .= "    <lastmod>" . date('Y-m-d') . "</lastmod>\n";

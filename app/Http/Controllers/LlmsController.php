@@ -19,6 +19,11 @@ class LlmsController extends Controller
         $categories = config('site.categories');
         $allTools = ToolRegistry::all();
 
+        $totalTools = 0;
+        foreach ($allTools as $catData) {
+            $totalTools += count($catData['tools'] ?? []);
+        }
+
         $lines = [];
         $lines[] = "# {$siteName}";
         $lines[] = "";
@@ -26,7 +31,7 @@ class LlmsController extends Controller
         $lines[] = "";
         $lines[] = "## About";
         $lines[] = "";
-        $lines[] = "{$siteName} is a free online platform providing scientific calculators and tools for Mathematics, Physics, Chemistry, Biology, Finance, Engineering, Health & Fitness, and Unit Conversion. All tools include step-by-step solutions, formulas, interactive graphs, and educational content.";
+        $lines[] = "{$siteName} is a free online platform with {$totalTools}+ scientific calculators and tools across " . count($categories) . " categories. All tools include step-by-step solutions, formulas, interactive graphs, and educational content.";
         $lines[] = "";
         $lines[] = "## Links";
         $lines[] = "";
@@ -41,6 +46,7 @@ class LlmsController extends Controller
 
         foreach ($categories as $slug => $cat) {
             $toolCount = count(($allTools[$slug] ?? [])['tools'] ?? []);
+            if ($toolCount === 0) continue;
             $lines[] = "- [{$cat['name']}]({$siteUrl}/{$slug}): {$cat['description']} ({$toolCount} tools)";
         }
 
@@ -104,6 +110,7 @@ class LlmsController extends Controller
 
         foreach ($categories as $slug => $cat) {
             $tools = ($allTools[$slug] ?? [])['tools'] ?? [];
+            if (empty($tools)) continue;
             $lines[] = "## {$cat['name']}";
             $lines[] = "";
             $lines[] = "**Category URL**: {$siteUrl}/{$slug}";
