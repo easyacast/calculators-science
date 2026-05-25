@@ -6,15 +6,17 @@
     $baseUrl = config('site.url');
 
     $otherCategoryTools = [];
-    foreach (ToolRegistry::all() as $catSlug => $tools) {
-        if ($catSlug === $currentCategorySlug || empty($tools)) continue;
+    foreach (ToolRegistry::all() as $catSlug => $catData) {
+        if ($catSlug === $currentCategorySlug) continue;
+        $tools = $catData['tools'] ?? [];
+        if (empty($tools)) continue;
         $firstSlug = array_key_first($tools);
         $tool = $tools[$firstSlug];
         $otherCategoryTools[] = [
             'title' => $tool['title'],
-            'description' => $tool['description'],
+            'description' => $tool['description'] ?? '',
             'url' => $baseUrl . '/' . $catSlug . '/' . $firstSlug,
-            'category' => $categories[$catSlug]['name'] ?? ucfirst($catSlug),
+            'category' => $categories[$catSlug]['name'] ?? ($catData['name'] ?? ucfirst($catSlug)),
             'categorySlug' => $catSlug,
         ];
     }

@@ -40,7 +40,7 @@ class LlmsController extends Controller
         $lines[] = "";
 
         foreach ($categories as $slug => $cat) {
-            $toolCount = count($allTools[$slug] ?? []);
+            $toolCount = count(($allTools[$slug] ?? [])['tools'] ?? []);
             $lines[] = "- [{$cat['name']}]({$siteUrl}/{$slug}): {$cat['description']} ({$toolCount} tools)";
         }
 
@@ -83,8 +83,8 @@ class LlmsController extends Controller
         $lines[] = "- **Categories**: " . count($categories);
 
         $totalTools = 0;
-        foreach ($allTools as $tools) {
-            $totalTools += count($tools);
+        foreach ($allTools as $catData) {
+            $totalTools += count($catData['tools'] ?? []);
         }
         $lines[] = "- **Total Tools**: {$totalTools}";
         $lines[] = "";
@@ -103,7 +103,7 @@ class LlmsController extends Controller
         $lines[] = "";
 
         foreach ($categories as $slug => $cat) {
-            $tools = $allTools[$slug] ?? [];
+            $tools = ($allTools[$slug] ?? [])['tools'] ?? [];
             $lines[] = "## {$cat['name']}";
             $lines[] = "";
             $lines[] = "**Category URL**: {$siteUrl}/{$slug}";

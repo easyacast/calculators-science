@@ -446,10 +446,10 @@
                     <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                 </div>
                 <h3 class="font-bold text-gray-900 group-hover:text-indigo-600 transition-colors text-sm">{{ $cat['name'] }}</h3>
-                <span class="text-xs text-gray-400 ml-auto">({{ count($allToolsForIndex[$catSlug] ?? []) }})</span>
+                <span class="text-xs text-gray-400 ml-auto">({{ count(($allToolsForIndex[$catSlug] ?? [])['tools'] ?? []) }})</span>
             </a>
             <ul class="space-y-1 max-h-48 overflow-y-auto pr-1" style="scrollbar-width: thin;">
-                @foreach($allToolsForIndex[$catSlug] ?? [] as $toolSlug => $tool)
+                @foreach(($allToolsForIndex[$catSlug] ?? [])['tools'] ?? [] as $toolSlug => $tool)
                 <li>
                     <a href="{{ config('site.url') }}/{{ $catSlug }}/{{ $toolSlug }}" class="flex items-center gap-2 text-sm text-gray-600 hover:text-indigo-600 py-1 px-2 rounded-md hover:bg-indigo-50 transition-all group">
                         <svg class="w-3 h-3 text-gray-300 group-hover:text-indigo-400 flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>

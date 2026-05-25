@@ -20,10 +20,10 @@
         <div>
             <h2 class="text-xl font-bold text-gray-900 mb-3">
                 <a href="{{ config('site.url') }}/{{ $slug }}" class="hover:text-indigo-600">{{ $cat['name'] }}</a>
-                <span class="text-sm font-normal text-gray-500">({{ count($allTools[$slug] ?? []) }} tools)</span>
+                <span class="text-sm font-normal text-gray-500">({{ count(($allTools[$slug] ?? [])['tools'] ?? []) }} tools)</span>
             </h2>
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1">
-                @foreach($allTools[$slug] ?? [] as $toolSlug => $tool)
+                @foreach(($allTools[$slug] ?? [])['tools'] ?? [] as $toolSlug => $tool)
                 <li><a href="{{ config('site.url') }}/{{ $slug }}/{{ $toolSlug }}" class="text-sm text-indigo-600 hover:underline">{{ $tool['title'] }}</a></li>
                 @endforeach
             </ul>
