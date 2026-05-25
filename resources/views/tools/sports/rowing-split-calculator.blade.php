@@ -1,0 +1,111 @@
+@extends('layouts.app')
+
+@section('title', 'Rowing Split Calculator - Free Online')
+@section('meta_description', 'Free Calculate rowing split times and watts. Step-by-step solutions and formulas included.')
+@section('canonical', config('site.url') . '/sports/rowing-split-calculator')
+
+@section('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Rowing Split Calculator",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+@endsection
+
+@section('content')
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+            <li><a href="{{ config('site.url') }}" class="hover:text-indigo-600">Home</a></li>
+            <li><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></li>
+            <li><a href="{{ config('site.url') }}/sports" class="hover:text-indigo-600">Sports</a></li>
+            <li><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></li>
+            <li class="text-gray-900 font-medium">Rowing Split Calculator</li>
+        </ol>
+    </nav>
+
+    <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Rowing Split Calculator</h1>
+    <p class="text-lg text-gray-600 mb-8">Calculate rowing split times and watts.</p>
+
+    <div x-data="rowingSplitCalculator()" class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Split Minutes</label>
+                <input type="number" x-model.number="splitMin" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="2">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Split Seconds</label>
+                <input type="number" x-model.number="splitSec" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="0">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Distance (meters)</label>
+                <input type="number" x-model.number="distance" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="2000">
+            </div>
+        </div>
+
+        <button @click="calculate()" class="px-6 py-2.5 bg-indigo-600 text-white font-medium rounded-xl hover:bg-indigo-700 transition-colors">Calculate</button>
+
+        <div x-show="calculated" x-cloak class="mt-6">
+            <div class="bg-indigo-50 rounded-xl p-4 border border-indigo-200 text-center mb-4">
+                <div class="text-xs text-indigo-600 font-medium uppercase mb-1">Result</div>
+                <div class="text-2xl font-bold text-gray-900" x-text="result"></div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                <h3 class="font-semibold text-gray-900 text-sm mb-2">Step-by-Step Solution</h3>
+                <pre class="text-sm text-gray-700 whitespace-pre-wrap" x-text="steps"></pre>
+            </div>
+        </div>
+    </div>
+
+    @include('components.adsense', ['slot' => 'tool-mid'])
+
+    <div class="max-w-3xl">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">About Rowing Split Calculator</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">Calculate rowing split times and watts. This calculator provides instant results with step-by-step explanations to help you understand the calculation process.</p>
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Formula</h2>
+        <div class="bg-gray-50 rounded-lg p-4 mb-4 text-center">
+            <p class="formula-block text-lg font-mono">Watts = 2.80 / pace³</p>
+        </div>
+
+        @include('components.internal-links', ['currentCategory' => $categorySlug, 'currentSlug' => $toolSlug])
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+function rowingSplitCalculator() {
+    return {
+        splitMin: 2,
+        splitSec: 0,
+        distance: 2000,
+        calculated: false,
+        result: '',
+        steps: '',
+
+        calculate() {
+            try {
+                let pace = this.splitMin * 60 + this.splitSec;
+let totalTime = pace * this.distance / 500;
+let watts = (2.80 / Math.pow(pace/500, 3)).toFixed(0);
+let mins = Math.floor(totalTime/60);
+let secs = Math.round(totalTime%60);
+this.result = watts + ' watts';
+this.steps = 'Split: ' + this.splitMin + ':' + String(Math.round(this.splitSec)).padStart(2,'0') + '/500m\nWatts: ' + watts + '\nTotal time for ' + this.distance + 'm: ' + mins + ':' + String(secs).padStart(2,'0');
+                this.calculated = true;
+            } catch(e) {
+                this.result = 'Error: Please check your inputs';
+                this.steps = e.message;
+                this.calculated = true;
+            }
+        },
+    };
+}
+</script>
+@endsection
